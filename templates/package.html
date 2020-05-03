@@ -1,0 +1,33 @@
+<h2>Package Details: ${ pkg.name }</h2>
+
+<dl>
+  <dt>Attribute:</dt>
+  <dd>${ concatStringsSep "." pkg.attrName }</dd>
+
+  <dt>Description:</dt>
+  <dd>${ pkg.description }</dd>
+
+  <dt>Upstream URL:</dt>
+  <dd><a href="${ pkg.homepage }">${pkg.homepage}</a></dd>
+
+  <dt>Licenses:</dt>
+  <dd>${ renderLicenses }</dd>
+
+  ${ if length pkg.maintainers > 0 then ''
+  <dt>Maintainers:</dt>
+  <dd>${ renderMaintainers }</dd>
+  '' else "" }
+
+  <dt>Build Inputs:</dt>
+  <dd>${ renderBuildInputs }</dd>
+
+  <dt>Native Build Inputs:</dt>
+  <dd>${ renderNativeBuildInputs }</dd>
+
+  <dt>Source:</dt>
+  <dd>${ pkg.position }</dd>
+</dl>
+
+${ if isString pkg.longDescription then ''
+<p>${ pkg.longDescription }</p>
+'' else "" }

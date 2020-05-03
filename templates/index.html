@@ -1,0 +1,6 @@
+<h1>Home</h1>
+<ul>
+  ${ concatMapStrings (pkg: ''
+  <li><a href="/package/${pkg.name}.html">${pkg.name}</a></li>
+  '' ) (__attrValues packages) }
+</ul>

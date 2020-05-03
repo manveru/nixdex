@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll="0">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NixDex - ${ title }</title>
+    <link
+      rel="shortcut icon"
+      href="/favicons/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="shortcut icon" href="/favicons/favicon32.png" />
+    ${ favicons [ "144" "114" "72" "57" ] } ${ css "main.css" }
+  </head>
+
+  <body>
+    ${ content }
+    <footer>
+      <a href="https://builtwithnix.org/">
+        <img src="https://builtwithnix.org/badge.svg" alt="built with nix" />
+      </a>
+    </footer>
+    ${ liveJS }
+  </body>
+</html>
