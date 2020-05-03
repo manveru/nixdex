@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "manveru",
         "repo": "euphenix",
-        "rev": "b23c25aaf832cf52d8fade7b9a22116b2e936354",
-        "sha256": "0r20xvcq9fchsfvsna8qnwjvyid819i0nnlcylnfhr9jfi0fdy4z",
+        "rev": "491a1d5b5a44ff605cb5ddd95c3066cb7076be19",
+        "sha256": "1nni7ysz4qnfrwfrsljr29ljxj3dmawjd80jf9z2h6m6bhw0p593",
         "type": "tarball",
-        "url": "https://github.com/manveru/euphenix/archive/b23c25aaf832cf52d8fade7b9a22116b2e936354.tar.gz",
+        "url": "https://github.com/manveru/euphenix/archive/491a1d5b5a44ff605cb5ddd95c3066cb7076be19.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

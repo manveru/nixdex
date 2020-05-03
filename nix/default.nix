@@ -2,7 +2,7 @@
 with
   { overlay = _: pkgs:
       { inherit (import sources.niv {}) niv;
-        euphenix = (import ../../euphenix {});
+        euphenix = (import sources.euphenix {});
       };
   };
 import sources.nixpkgs
