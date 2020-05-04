@@ -1,4 +1,7 @@
 <h1>Home</h1>
+<p>
+  Number of packages: ${ toString (__length (__attrNames packages )) }
+</p>
 <ul>
   ${ concatMapStrings (pkg: ''
   <li><a href="/package/${pkg.name}.html">${pkg.name}</a></li>

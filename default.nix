@@ -1,32 +1,3 @@
-{ prefixes ? [
-  "_"
-  "a"
-  "b"
-  "c"
-  "d"
-  "e"
-  "f"
-  "g"
-  "h"
-  "i"
-  "j"
-  "k"
-  "l"
-  "m"
-  "n"
-  "o"
-  "p"
-  "q"
-  "r"
-  "s"
-  "t"
-  "u"
-  "v"
-  "w"
-  "x"
-  "y"
-  "z"
-] }:
 let
   pkgs = import ./nix { };
 
@@ -38,7 +9,7 @@ let
   inherit (euphenix.lib)
     take optionalString hasPrefix concatMapStrings mapAttrs' concatMapStringsSep
     concatStringsSep removePrefix;
-  inherit (builtins) length typeOf isString isList isAttrs;
+  inherit (builtins) length typeOf isString isList isAttrs replaceStrings;
   inherit (euphenix) build mkPostCSS cssTag;
 
   mkRoute = template:
@@ -75,7 +46,10 @@ let
 
         renderMaintainers = concatMapStringsSep ", " (maintainer:
           if isAttrs maintainer then
-            ''<a href="mailto:${maintainer.email}">${maintainer.name}</a>''
+            if isString (maintainer.github or null) then ''
+              <a href="https://github.com/${maintainer.github}">${maintainer.name}</a>
+            '' else
+              ''<a href="mailto:${maintainer.email}">${maintainer.name}</a>''
           else
             logIssue "maintainer" "") pkg.maintainers;
 
@@ -91,8 +65,12 @@ let
           else
             logIssue "dependencies ${typeOf dep}" "") pkg.nativeBuildInputs;
 
-        renderPosition =
-          removePrefix (toString nixpkgsToRender.path) pkg.position;
+        renderPosition = let
+          path = removePrefix (toString nixpkgsToRender.path) pkg.position;
+          url = "https://github.com/NixOS/nixpkgs/blob/master${
+              replaceStrings [ ":" ] [ "#L" ] path
+            }";
+        in ''<a href="${url}">${path}</a>'';
 
         logIssue = kind: value:
           __trace "${kind} issue at (${title}) ${pkg.position}" value;
@@ -118,7 +96,6 @@ let
   packages = import ./packages.nix {
     lib = euphenix.lib;
     pkgs = nixpkgsToRender;
-    prefixes = prefixes;
   };
 
   packageRoutes = mapAttrs' (name: pkg: {

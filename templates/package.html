@@ -1,6 +1,9 @@
 <h2>Package Details: ${ pkg.name }</h2>
 
 <dl>
+  <dt>Version:</dt>
+  <dd>${ pkg.version }</dd>
+
   <dt>Attribute:</dt>
   <dd>${ concatStringsSep "." pkg.attrName }</dd>
 
@@ -18,14 +21,8 @@
   <dd>${ renderMaintainers }</dd>
   '' else "" }
 
-  <dt>Build Inputs:</dt>
-  <dd>${ renderBuildInputs }</dd>
-
-  <dt>Native Build Inputs:</dt>
-  <dd>${ renderNativeBuildInputs }</dd>
-
   <dt>Source:</dt>
-  <dd>${ pkg.position }</dd>
+  <dd>${ renderPosition }</dd>
 </dl>
 
 ${ if isString pkg.longDescription then ''
